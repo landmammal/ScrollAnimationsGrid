@@ -25,21 +25,33 @@ preloadImages('.grid__item-img').then( _ => {
 		
 		const image = item.querySelector('.grid__item-img');
 
-		gsap.timeline({
+		const xPercentRandomVal = gsap.utils.random(-100,100);
+
+		gsap.timeline()
+		.addLabel('start', 0)
+        .set(image, {
+			transformOrigin: `${xPercentRandomVal < 0 ? 0 : 100}% 100%`
+		}, 'start')
+		.to(image, {
+            ease: 'none',
+            scale: 0,
 			scrollTrigger: {
                 trigger: item,
                 start: "top top",
                 end: "bottom top",
+                scrub: true,
+            }
+        }, 'start')
+		.to(item, {
+            ease: 'none',
+            xPercent: xPercentRandomVal,
+			scrollTrigger: {
+                trigger: item,
+                start: "top bottom",
+                end: "top top",
                 scrub: true
             }
-		})
-		.set(image, {
-			transformOrigin: `${gsap.utils.random(0,1) > 0.5 ? 0 : 100}% 100%`
-		})
-        .to(image, {
-            ease: 'none',
-            scale: 0
-        });
+        }, 'start');
 
 	});
 });

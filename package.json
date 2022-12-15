@@ -21,6 +21,7 @@
     "url": "https://github.com/codrops/ScrollAnimationsGrid/issues"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.0",
     "parcel": "^2.5.0"
   },
   "dependencies": {
